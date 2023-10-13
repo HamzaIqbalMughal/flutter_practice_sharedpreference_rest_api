@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           } else if (sp.getString('userType') == 'teacher') {
             Navigator.pushNamed(context, TeacherScreen.screen_id);
           }
+          sp.setBool('savedSession', true);
         } else {
           Navigator.pushReplacementNamed(context, LogInScreen.screen_id);
         }

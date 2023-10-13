@@ -27,8 +27,18 @@ class _AdminScreenState extends State<AdminScreen> {
             InkWell(
               onTap: () async {
                 SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.clear();
-                Navigator.pop(context);
+                if (sp.getBool('savedSession') ?? false) {
+                  sp.clear();
+                  Navigator.pushReplacementNamed(
+                      context, LogInScreen.screen_id);
+                  /*
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, LogInScreen.screen_id);
+                  */
+                } else {
+                  sp.clear();
+                  Navigator.pop(context);
+                }
               },
               child: Container(
                 height: 50,
