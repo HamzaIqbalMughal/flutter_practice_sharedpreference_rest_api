@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SharedPreferences sp = await SharedPreferences.getInstance();
                   // sp.setBool('isLogIn', false);
                   sp.clear();
-                  Navigator.pushNamed(context, LogInScreen.screen_id);
+                  Navigator.pop(context);
                 },
                 child: Container(
                   height: 50,

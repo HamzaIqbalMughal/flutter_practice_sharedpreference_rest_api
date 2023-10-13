@@ -4,3 +4,5 @@ things learned in this project:
 3. SharedPreferences
 4. used controllers
 5. on HomeScreen , added circular progress indicator & used dropdown manu button
+6. using SharedPreferences, created multiple session according to multiple user.
+7. 

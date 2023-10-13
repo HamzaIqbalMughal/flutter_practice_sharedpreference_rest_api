@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/admin_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/home_screen.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/studentScreen.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/teacher_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +20,10 @@ class _LogInScreenState extends State<LogInScreen> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final ageController = TextEditingController();
+
+  static const List<String> userTypes = <String>['student', 'admin', 'teacher'];
+
+  String dropDownFirstVal = userTypes.first;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +36,6 @@ class _LogInScreenState extends State<LogInScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFormField(
-              keyboardType: TextInputType.number,
-              controller: ageController,
-              decoration: InputDecoration(hintText: 'Age'),
-            ),
-            SizedBox(
-              height: 20,
-            ),
             TextFormField(
               controller: emailController,
               decoration: InputDecoration(hintText: 'Email'),
@@ -55,16 +53,50 @@ class _LogInScreenState extends State<LogInScreen> {
             SizedBox(
               height: 20,
             ),
+            // DropdownButton<String>(
+            //   value: dropDownFirstVal,
+            //   items:
+            //       credentialsList.map<DropdownMenuItem<String>>((String value) {
+            //     return DropdownMenuItem<String>(
+            //       value: value,
+            //       child: Text(value),
+            //     );
+            //   }).toList(),
+            //   onChanged: (String? value) {
+            //     setState(() {
+            //       dropDownFirstVal = value!;
+            //     });
+            //   },
+            // ),
+            DropdownButton<String>(
+              value: dropDownFirstVal,
+              items: userTypes.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (String? value) {
+                setState(() {
+                  dropDownFirstVal = value!;
+                });
+              },
+            ),
             InkWell(
               onTap: () async {
                 SharedPreferences sp = await SharedPreferences.getInstance();
 
                 sp.setString('email', emailController.text.toString());
-                sp.setString('age', ageController.text.toString());
-                sp.setString('userType', 'student');
+                sp.setString('userType', dropDownFirstVal);
                 sp.setBool('isLogIn', true);
 
-                Navigator.pushNamed(context, HomeScreen.screen_id);
+                if (sp.getString('userType') == 'student') {
+                  Navigator.pushNamed(context, StudentScreen.screen_id);
+                } else if (sp.getString('userType') == 'admin') {
+                  Navigator.pushNamed(context, AdminScreen.screed_id);
+                } else if (sp.getString('userType') == 'teacher') {
+                  Navigator.pushNamed(context, TeacherScreen.screen_id);
+                }
               },
               child: Container(
                 height: 50,

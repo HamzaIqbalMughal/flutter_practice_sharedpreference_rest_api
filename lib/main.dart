@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/admin_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/home_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/login_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/splash_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/studentScreen.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/teacher_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,12 +26,13 @@ class MyApp extends StatelessWidget {
       // home: SplashScreen(),
       initialRoute: SplashScreen.screen_id,
       routes: {
-        SplashScreen.screen_id : (context)=> SplashScreen(),
-        HomeScreen.screen_id : (context)=> HomeScreen(),
-        LogInScreen.screen_id : (context)=> LogInScreen(),
-        StudentScreen.screen_id : (context)=> StudentScreen(),
+        SplashScreen.screen_id: (context) => SplashScreen(),
+        HomeScreen.screen_id: (context) => HomeScreen(),
+        LogInScreen.screen_id: (context) => LogInScreen(),
+        StudentScreen.screen_id: (context) => StudentScreen(),
+        AdminScreen.screed_id: (context) => AdminScreen(),
+        TeacherScreen.screen_id: (context) => TeacherScreen(),
       },
     );
   }
 }
-

@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'login_screen.dart';
 
 class StudentScreen extends StatefulWidget {
-
   const StudentScreen({super.key});
 
   static const String screen_id = 'StudentScreen';
@@ -73,7 +72,7 @@ class _StudentScreenState extends State<StudentScreen> {
                   SharedPreferences sp = await SharedPreferences.getInstance();
                   // sp.setBool('isLogIn', false);
                   sp.clear();
-                  Navigator.pushNamed(context, LogInScreen.screen_id);
+                  Navigator.pop(context);
                 },
                 child: Container(
                   height: 50,

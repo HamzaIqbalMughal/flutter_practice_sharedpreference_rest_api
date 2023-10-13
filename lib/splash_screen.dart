@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/admin_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/home_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/login_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/studentScreen.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/teacher_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,23 +25,25 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void isLogIn() async {
-
     SharedPreferences sp = await SharedPreferences.getInstance();
     bool isLogIn = sp.getBool('isLogIn') ?? false;
 
-    Timer(Duration(seconds: 3), () {
-      if(isLogIn){
-        if(sp.getString('userType') == 'student'){
-          Navigator.pushReplacementNamed(context, StudentScreen.screen_id);
+    Timer(
+      Duration(seconds: 3),
+      () {
+        if (isLogIn) {
+          if (sp.getString('userType') == 'student') {
+            Navigator.pushReplacementNamed(context, StudentScreen.screen_id);
+          } else if (sp.getString('userType') == 'admin') {
+            Navigator.pushNamed(context, AdminScreen.screed_id);
+          } else if (sp.getString('userType') == 'teacher') {
+            Navigator.pushNamed(context, TeacherScreen.screen_id);
+          }
+        } else {
+          Navigator.pushReplacementNamed(context, LogInScreen.screen_id);
         }
-      }
-      else{
-        Navigator.pushReplacementNamed(context, LogInScreen.screen_id);
-      }
-      // isLogIn
-      //     ? Navigator.pushReplacementNamed(context, HomeScreen.screen_id)
-      //     : Navigator.pushNamed(context, LogInScreen.screen_id);
-    });
+      },
+    );
   }
 
   @override
