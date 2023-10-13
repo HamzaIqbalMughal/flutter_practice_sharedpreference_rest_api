@@ -1,4 +1,6 @@
 things learned in this project:
 1. Splash Screen (also used routes)
 2. Future Function (asyn await)
-3.
+3. SharedPreferences
+4. used controllers
+5. on HomeScreen , added circular progress indicator & used dropdown manu button

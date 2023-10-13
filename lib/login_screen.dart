@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/home_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,44 +13,57 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  final logInFormKey = GlobalKey<FormState>();
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final ageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Email'
-              ),
+              keyboardType: TextInputType.number,
+              controller: ageController,
+              decoration: InputDecoration(hintText: 'Age'),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             TextFormField(
+              controller: emailController,
+              decoration: InputDecoration(hintText: 'Email'),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: passwordController,
+              obscureText: true,
               decoration: InputDecoration(
-                  hintText: 'password'
+                hintText: 'password',
               ),
             ),
-            SizedBox(height: 20,),
-
+            SizedBox(
+              height: 20,
+            ),
             InkWell(
               onTap: () async {
                 SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.setString('name', 'Hamza Iqbal');
-                sp.setInt('age', 23);
-                sp.setBool('isLogin', true);
 
-                // Fluttertoast.showToast(msg: 'Button Clicked');
-                // myFutureFunc();
-                print(sp.get('name'));   // print(sp.getString('name'));
-                print(sp.get('age'));
-                print(sp.getBool('isLogin').toString());
+                sp.setString('email', emailController.text.toString());
+                sp.setString('age', ageController.text.toString());
+                sp.setBool('isLogIn', false);
 
-                sp.remove('name');
-
+                Navigator.pushNamed(context, HomeScreen.screen_id);
               },
               child: Container(
                 height: 50,
@@ -63,7 +77,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
