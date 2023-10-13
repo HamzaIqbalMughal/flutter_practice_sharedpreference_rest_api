@@ -61,7 +61,8 @@ class _LogInScreenState extends State<LogInScreen> {
 
                 sp.setString('email', emailController.text.toString());
                 sp.setString('age', ageController.text.toString());
-                sp.setBool('isLogIn', false);
+                sp.setString('userType', 'student');
+                sp.setBool('isLogIn', true);
 
                 Navigator.pushNamed(context, HomeScreen.screen_id);
               },

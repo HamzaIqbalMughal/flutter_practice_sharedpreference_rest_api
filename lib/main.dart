@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/home_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/login_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/splash_screen.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/studentScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.screen_id : (context)=> SplashScreen(),
         HomeScreen.screen_id : (context)=> HomeScreen(),
         LogInScreen.screen_id : (context)=> LogInScreen(),
+        StudentScreen.screen_id : (context)=> StudentScreen(),
       },
     );
   }

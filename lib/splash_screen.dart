@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/home_screen.dart';
 import 'package:flutter_practice_sharedpreference_rest_api/login_screen.dart';
+import 'package:flutter_practice_sharedpreference_rest_api/studentScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,11 +28,17 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isLogIn = sp.getBool('isLogIn') ?? false;
 
     Timer(Duration(seconds: 3), () {
-      isLogIn
-          ? Navigator.pushReplacementNamed(context, HomeScreen.screen_id)
-          : Navigator.pushNamed(context, LogInScreen.screen_id);
-      // if(isLogIn) Navigator.pushReplacementNamed(context, LogInScreen.screen_id);
-      // else Navigator.pushNamed(context, LogInScreen.screen_id);
+      if(isLogIn){
+        if(sp.getString('userType') == 'student'){
+          Navigator.pushReplacementNamed(context, StudentScreen.screen_id);
+        }
+      }
+      else{
+        Navigator.pushReplacementNamed(context, LogInScreen.screen_id);
+      }
+      // isLogIn
+      //     ? Navigator.pushReplacementNamed(context, HomeScreen.screen_id)
+      //     : Navigator.pushNamed(context, LogInScreen.screen_id);
     });
   }
 
