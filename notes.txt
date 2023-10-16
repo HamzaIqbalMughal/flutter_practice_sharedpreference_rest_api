@@ -5,4 +5,17 @@ things learned in this project:
 4. used controllers
 5. on HomeScreen , added circular progress indicator & used dropdown manu button
 6. using SharedPreferences, created multiple session according to multiple user.
-7. 
+7. Studied, project structure
+    Important files in Mobile Application project
+    - for android:
+        android/build.gradle
+        android/app/build.gradle
+        android/app/src/main/AndroidManifest.xml (in this file we add permissions also metadata, like credentials for fire base)
+    - for ios:
+        ios/Runner/info.plist (in this file we can change name of App and bundle name, also we can control the orientations of the App)
+        runner file (helps in customization of Application's sdk (iOS))
+
+    - pubspec.yaml
+        manages dependencies , help to control the sdk things, helps to manage assets and fonts, and many more
+
+8.
